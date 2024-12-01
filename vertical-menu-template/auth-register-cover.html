@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" class="light-style layout-wide customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template" data-style="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+  <title>Register | SOCIALiQ</title>
+
+  <meta name="description" content="" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap" rel="stylesheet" />
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../../assets/css/demo.css" />
+
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="../../assets/vendor/libs/node-waves/node-waves.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/@form-validation/form-validation.css" />
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="../../assets/vendor/css/pages/page-auth.css" />
+
+  <script src="../../assets/vendor/js/helpers.js"></script>
+  <script src="../../assets/vendor/js/template-customizer.js"></script>
+  <script src="../../assets/js/config.js"></script>
+</head>
+
+<body>
+<!-- Content -->
+<div class="authentication-wrapper authentication-cover">
+  <a href="index.html" class="app-brand auth-cover-brand">
+    <span class="app-brand-logo demo">
+      <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z" fill="#7367F0" />
+      </svg>
+    </span>
+    <span class="app-brand-text demo text-heading fw-bold">SOCIALiQ</span>
+  </a>
+
+  <div class="authentication-inner row m-0">
+    <div class="d-none d-lg-flex col-lg-8 p-0">
+      <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
+        <img src="../../assets/img/illustrations/auth-register-illustration-light.png" alt="auth-register-cover" class="my-5 auth-illustration" />
+      </div>
+    </div>
+
+    <div class="d-flex col-12 col-lg-4 align-items-center authentication-bg p-sm-12 p-6">
+      <div class="w-px-400 mx-auto mt-12 pt-5">
+        <h4 class="mb-1">Adventure starts here 🚀</h4>
+        <p class="mb-6">Make your app management easy and fun!</p>
+
+        <form id="formAuthentication" class="mb-6">
+          <div class="mb-6">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter your username" required />
+          </div>
+          <div class="mb-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email" required />
+          </div>
+          <div class="mb-6 form-password-toggle">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-control" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="btn btn-primary d-grid w-100">Sign up</button>
+        </form>
+
+        <p class="text-center">
+          <span>Already have an account?</span>
+          <a href="auth-login-cover.html"><span>Sign in instead</span></a>
+        </p>
+
+        <div class="divider my-6">
+          <div class="divider-text">or</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Core JS -->
+<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../../assets/vendor/libs/popper/popper.js"></script>
+<script src="../../assets/vendor/js/bootstrap.js"></script>
+
+<script>
+  document.getElementById('formAuthentication').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const response = await fetch('http://localhost:5000/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      // Redirect to index.html if registration is successful
+      window.location.href = 'index.html';
+    } else {
+      alert(data.message || 'An error occurred.');
+    }
+  });
+</script>
+
+</body>
+</html>
