@@ -1,0 +1,14 @@
+{
+  "pages": [
+    {
+      "name": "Dashboard Analytics",
+      "icon": "ti-smart-home",
+      "url": "index.html"
+    },
+    {
+      "name": "Invoice List",
+      "icon": "ti-list-numbers",
+      "url": "app-invoice-list.html"
+    }
+  ]
+}
